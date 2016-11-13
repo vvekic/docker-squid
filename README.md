@@ -5,7 +5,7 @@ Squid in a docker container.  This container is based on Alpine to keep the imag
 To run squid with the out of the box confiruation 
 
 ```
-docker run -d -p 3128:3128 scbunn/squid:latest
+docker run -d -p 3128:3128 bishof/squid
 ```
 
 
@@ -15,7 +15,7 @@ docker run -d -p 3128:3128 scbunn/squid:latest
 docker run \
 -p 3121:3128 \
 -v /my/custom/squid.conf:/etc/squid/squid.conf:ro,Z \
--d scbunn/squid:latest
+-d bishof/squid
 ```
 
 ### Caching to disk
@@ -26,12 +26,12 @@ docker run  \
 -p 3128:3128 \
 -v /my/custom/squid.conf:/etc/squid/squid.conf:ro,Z \
 -v /data/cache:/var/cache/squid:Z \
--d scbunn/squid:latest
+-d bishof/squid
 ```
 
 
 ## Logging
-The default configruation currently logs inside the container to `/var/log/squid/`.  The default configuration is setup to only log failed attempts.  Successfull attempts are *not* logged with the default config. The following log files are configured by default: `/var/log/access.log`, `/var/log/cache.log`.  The goal is to redirect the access and cache log to stdout and stderr [Issue 5](https://github.com/scbunn/docker-squid/issues/5).
+The default configruation currently logs inside the container to `/var/log/squid/`.  The default configuration is setup to only log failed attempts.  Successfull attempts are *not* logged with the default config. The following log files are configured by default: `/var/log/access.log`, `/var/log/cache.log`.
 
 ## Default Configuration
 The default configuration supports basic HTTP/S.  There are no access controls in place to prevent unwanted hosts from using this proxy.  Any host that is able to connect will be accepted.  The default config will proxy any request to port `80` or port `443`.
